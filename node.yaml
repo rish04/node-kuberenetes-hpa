@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node
+  namespace: test
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+      - name: node
+        image: rish04/node-hello:latest  
+        ports:
+        - containerPort: 3000
+      priorityClassName: high-priority
